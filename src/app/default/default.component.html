@@ -24,57 +24,113 @@
     <p>
       <strong>
       Ao encaminhar a presente mensagem e fornecer os dados para a finalidade de dar cumprimento aos direitos dos titulares previstos na Lei Geral de Proteção de Dados (lei 13.709/2018),  o requerente declara ter conhecimento e concordar com
-      <a href="../../assets/pdf/politicadeprivacidade.pdf" style="color:green"> a Política de Privacidade e Proteção de Dados </a> e autoriza o tratamento de seus dados para essa finalidade.
+      <a href="../../assets/pdf/politicadeprivacidade.pdf" target="_blank" style="color:green"> a Política de Privacidade e Proteção de Dados </a> e autoriza o tratamento de seus dados para essa finalidade.
     </strong>
   </p>
 
+  <form [formGroup]="cadastroForm">
+
     <div class="row">
       <div class="col-md-12">
-        <label for="nome">Meu Nome</label>
-        <select name="nome" id="nome" class="form-control">
-          <option value="" disabled>Informe uma opção</option>
+        <label for="nome">Eu sou</label>
+        <select id="nome" class="form-control" formControlName="tipoTitular" [ngClass]="{ 'is-invalid' : displayMessage.eusou }" >
+          <option value="" disabled selected>Informe uma opção</option>
           <option value="Beneficiário">Beneficiário</option>
           <option value="Colaborador ou Ex-Colaborador">Colaborador ou Ex-Colaborador</option>
           <option value="Fornecedor ou Parceiro">Fornecedor ou Parceiro</option>
           <option value="outros">Outros</option>
         </select>
+        <span class="text-danger" *ngIf="displayMessage.eusou">
+          <p [innerHTML]="displayMessage.eusou"></p>
+        </span>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
         <label for="Pedido">Meu Pedido</label>
-        <input id="Pedido" type="text" class="form-control" >
+        <select id="nome" class="form-control" formControlName="pedido" [ngClass]="{'is-invalid':displayMessage.meupedido}">
+          <option value="" disabled selected>Informe uma opção</option>
+          <option value="Confirmação da existência de tratamento">Confirmação da existência de tratamento</option>
+          <option value="Correção de dados incompletos - inexatos - desatualizados">Correção de dados incompletos - inexatos - desatualizados</option>
+          <option value="Anonimização - bloqueio - eliminação de dados desnecessários">Anonimização - bloqueio - eliminação de dados desnecessários</option>
+          <option value="Portabilidade dos dados">Portabilidade dos dados</option>
+          <option value="Eliminação dos dados pessoais tratados com o consentimento do titular">Eliminação dos dados pessoais tratados com o consentimento do titular</option>
+          <option value="Informação sobre compartilhamento">Informação sobre compartilhamento</option>
+          <option value="Informação sobre a possibilidade de não fornecer consentimento">Informação sobre a possibilidade de não fornecer consentimento</option>
+          <option value="Revogação do consentimento">Revogação do consentimento</option>
+          <option value="Outros">Outros</option>
+        </select>
+        <span class="text-danger" *ngIf="displayMessage.meupedido">
+          <p [innerHTML]="displayMessage.meupedido"></p>
+        </span>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
-        <label for="Informacao">Quem está solicitando as informações?</label>
-        <input id="Infomracao" type="text" class="form-control" >
+        <label for="solicitante">Quem está solicitando as informações?</label>
+       <select id="solicitante" class="form-control" formControlName="solicitante" [ngClass]="{'is-invalid': displayMessage.solicitante}">
+         <option value="" disabled selected>Informe uma opção</option>
+         <option value="Titular dos Dados">Titular dos Dados</option>
+         <option value="Responsável legal">Responsável legal</option>
+         <option value="Representante legal">Representante legal</option>
+       </select>
+       <span class="text-danger">
+         <p [innerHTML]="displayMessage.solicitante"></p>
+       </span>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
         <label for="Ncompleto">Nome Completo</label>
-        <input id="Ncompleto" type="text" class="form-control" >
+        <input id="Ncompleto" type="text" class="form-control" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome}">
+        <span class="text-danger">
+          <p [innerHTML]="displayMessage.nome"></p>
+        </span>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
         <label for="Cpf" >CPF</label>
-        <input id="CPF" class="form-control" type="text">
+        <input id="CPF" class="form-control" type="text" formControlName="cpf" [ngClass]="{'is-invalid':displayMessage.cpf}" cpf [textMask]="{mask: MASKS.cpf.textMask}">
+        <span class="text-danger">
+          <p [innerHTML]="displayMessage.cpf"></p>
+        </span>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
         <label for="email">E-mail</label>
-        <input id="email" type="text" class="form-control">
+        <input id="email" type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : displayMessage.email}">
+        <span class="text-danger">
+          <p [innerHTML]="displayMessage.email"></p>
+        </span>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 mb-4">
       <div class="col-md-12">
         <label for="Descricao">Descrição</label>
-        <textarea name="Desc" id="Descricao" cols="30" rows="10" class="form-control">
+        <textarea  id="Descricao" cols="30" rows="10" class="form-control" formControlName="descricao" [ngClass]="{'is-invalid': displayMessage.descricao}">
         </textarea>
+        <span class="text-danger">
+          <p [innerHTML]="displayMessage.descricao"></p>
+        </span>
       </div>
     </div>
+
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" id="termosdados" formControlName="titular"  [ngClass]="{'is-invalid': displayMessage.titular}" >
+        <label class="form-check-label" for="termosdados">Declaro que sou o titular dos dados, li e entendi os termos deste Pedido.</label>
+      </div>
+
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" id="infoverdadeiras" formControlName="declaracao"  [ngClass]="{'is-invalid': displayMessage.declaracao}" >
+        <label class="form-check-label" for="infoverdadeiras">Declaro que todas as informações fornecidas são verdadeiras.</label>
+      </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="!cadastroForm.valid" (click)="adicionarContato()">
+      submeter
+    </button>
+
+  </form>
 </div>
+<app-footer></app-footer>
