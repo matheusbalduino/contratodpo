@@ -51,7 +51,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         email:'E-mail Inválido'
       },
       descricao:{
-        required:'Informe uma descrição'
+        required:'Informe uma descrição',
+        maxlength:'Tamanho máximo de 2000 caracteres excedido'
       },
       titular:{
         required:'Campo obrigatório para continuar'
@@ -91,7 +92,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       nome:['',[Validators.required]],
       cpf:['',[Validators.required, NgBrazilValidators.cpf]],
       email:['',[Validators.required, Validators.email]],
-      descricao:['',[Validators.required]],
+      descricao:['',[Validators.required, Validators.maxLength(2000)]],
       titular: ['', [Validators.requiredTrue]],
       declaracao:['',[Validators.requiredTrue]]
     })
