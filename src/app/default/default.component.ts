@@ -54,7 +54,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         required:'Informe uma descrição',
         maxlength:'Tamanho máximo de 2000 caracteres excedido'
       },
-      titular:{
+      termos:{
         required:'Campo obrigatório para continuar'
       },
       declaracao:{
@@ -93,7 +93,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       cpf:['',[Validators.required, NgBrazilValidators.cpf]],
       email:['',[Validators.required, Validators.email]],
       descricao:['',[Validators.required, Validators.maxLength(2000)]],
-      titular: ['', [Validators.requiredTrue]],
+      termos: ['', [Validators.requiredTrue]],
       declaracao:['',[Validators.requiredTrue]]
     })
   }

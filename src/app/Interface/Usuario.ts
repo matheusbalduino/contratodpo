@@ -6,6 +6,6 @@ export class Usuario{
   cpf:string;
   email:string;
   descricao:string;
-  titular:string;
+  termos:string;
   declaracao:string;
 }

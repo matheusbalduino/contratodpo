@@ -2,4 +2,24 @@
   background-image: url('../../../../assets/Images/fundo-topo.jpg');
   height: 100px;
   width: 100%;
+  background-position: center;
+}
+
+@media(max-width:700px){
+  .navbar{
+    align-items:baseline;
+    padding: 0.8rem 0rem;
+    height: 66px;
+
+  }
+
+
+  .navbar .container{
+    justify-content:start;
+
+    img{
+      width:6rem !important;
+    }
+  }
+
 }
